@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y.E.S.I CONCEPT - Préparation Mentale Sportive</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.2em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Method Section */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .method-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .method-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            position: relative;
+        }
+
+        .method-card:nth-child(1) .method-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .method-card:nth-child(2) .method-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .method-card:nth-child(3) .method-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .method-card:nth-child(4) .method-icon { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+        .method-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .method-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .service-card .service-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+
+        .service-card h4 {
+            font-size: 1.2em;
+            color: #333;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .service-price {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #f8f9fa;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2em;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Progressive Enhancement */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Y.E.S.I CONCEPT</div>
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#methode">Méthode</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-btn">Prendre RDV</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>Y.E.S.I CONCEPT</h1>
+            <p>La préparation mentale sportive qui révèle votre véritable potentiel</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Sportifs accompagnés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">Amélioration mesurée</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3 mois</span>
+                    <span class="stat-label">Résultats visibles</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-calendar-alt"></i> Prendre rendez-vous
+                </a>
+                <a href="#methode" class="btn-secondary">
+                    <i class="fas fa-play"></i> Découvrir la méthode
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="color: white; font-size: 1.5em;"></i>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="section" id="methode">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>La Méthode Y.E.S.I</h2>
+                <p>Une approche scientifique et personnalisée pour développer votre mental sportif</p>
+            </div>
+
+            <div class="method-grid">
+                <div class="method-card fade-in">
+                    <div class="method-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>YES ATTITUDE</h3>
+                    <p>Développer une attitude positive face à l'adversité et maintenir sa motivation en toutes circonstances.</p>
+                </div>
+
+                <div class="method-card fade-in">
+                    <div class="method-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>ESTIME DE SOI</h3>
+                    <p>Renforcer la confiance en soi et l'acceptance de ses qualités pour performer sans pression.</p>
+                </div>
+
+                <div class="method-card fade-in">
+                    <div class="method-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>SMART GOALS</h3>
+                    <p>Définir des objectifs clairs et atteignables pour maintenir la concentration et la sérénité.</p>
+                </div>
+
+                <div class="method-card fade-in">
+                    <div class="method-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>INVESTISSEMENT</h3>
+                    <p>Cultiver la motivation intrinsèque et l'autonomie pour un engagement durable dans la pratique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Nos Accompagnements</h2>
+                <p>Des solutions adaptées à votre niveau et vos objectifs sportifs</p>
+            </div>
+
+            <!-- Prestations Individuelles -->
+            <div class="services-category">
+                <h3 style="color: #667eea; margin-bottom: 30px; font-size: 1.5em;">
+                    <i class="fas fa-user"></i> Prestations Individuelles
+                </h3>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Bilan Y.E.S.I CONCEPT</h4>
+                        </div>
+                        <p>Évaluation complète sur les 4 axes, rapport détaillé et recommandations personnalisées.</p>
+                        <div class="service-price">30€</div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Fixations d'objectifs</h4>
+                        </div>
+                        <p>Définition d'objectifs de résultats & moyens avec plan d'action structuré.</p>
+                        <div class="service-price">30€</div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Ressenti instantané</h4>
+                        </div>
+                        <p>Analyse de votre état mental à l'instant T avec conseils immédiats.</p>
+                        <div class="service-price">30€</div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <h4>Fiche bloc 7 jours</h4>
+                        </div>
+                        <p>Plan d'actions concret sur 7 jours pour l'axe de votre choix.</p>
+                        <div class="service-price">80€</div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h4>Accompagnement Bloc 7</h4>
+                        </div>
+                        <p>Suivi personnalisé du bloc 7 jours + 80€ par degré supplémentaire (4 degrés max).</p>
+                        <div class="service-price">120€ <span style="font-size: 0.8em; opacity: 0.7;">+ degrés</span></div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h4>Accompagnement mensuel</h4>
+                        </div>
+                        <p>Suivi complet 1 mois : fiches personnalisées, appels réguliers, exercices guidés.</p>
+                        <div class="service-price">300€</div>
+                        <a href="#contact" class="btn-secondary">Commander</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clubs & Structures Sportives -->
+            <div class="services-category" style="margin-top: 60px;">
+                <h3 style="color: #667eea; margin-bottom: 30px; font-size: 1.5em;">
+                    <i class="fas fa-users"></i> Clubs & Structures Sportives
+                </h3>
+                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h4>Pack Équipe 1ère - Bilan rentrée</h4>
+                        </div>
+                        <ul class="service-features">
+                            <li>Pour 15 à 18 joueurs</li>
+                            <li>Bilan mental complet par joueur</li>
+                            <li>Rapports individuels</li>
+                            <li>Recommandations d'équipe</li>
+                            <li>Synthèse pour le staff</li>
+                        </ul>
+                        <div class="service-price">15€ <span style="font-size: 0.8em; opacity: 0.7;">/ joueur</span></div>
+                        <a href="#contact" class="btn-secondary">Demander un devis</a>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>Bilan mi-saison</h4>
+                        </div>
+                        <ul class="service-features">
+                            <li>Pour 15 à 18 joueurs</li>
+                            <li>Point d'étape sur l'évolution</li>
+                            <li>Rapports de progression</li>
+                            <li>Ajustements recommandés</li>
+                            <li>Suivi des objectifs</li>
+                        </ul>
+                        <div class="service-price">20€ <span style="font-size: 0.8em; opacity: 0.7;">/ joueur</span></div>
+                        <a href="#contact" class="btn-secondary">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="temoignages">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Témoignages</h2>
+                <p>Découvrez les résultats obtenus par nos sportifs</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Avant Y.E.S.I, je stressais énormément avant les matchs. Maintenant, j'ai des outils concrets pour gérer ma pression et je suis beaucoup plus régulier dans mes performances."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">K</div>
+                        <div class="author-info">
+                            <h4>Kevin</h4>
+                            <p>Football - Régional 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Grâce au bilan Y.E.S.I, j'ai compris mes points faibles et mes forces. Mon entraîneur a remarqué ma progression dès le 2ème mois d'accompagnement."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Marie</h4>
+                            <p>Tennis - Classée 15/2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Le suivi Y.E.S.I a transformé notre équipe. Nous sommes plus unis et chacun gère mieux sa pression individuelle. Nos résultats parlent d'eux-mêmes."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div class="author-info">
+                            <h4>Coach Julien</h4>
+                            <p>Basket - Nationale 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Prendre Rendez-vous</h2>
+                <p>Commencez votre transformation mentale dès aujourd'hui</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nom">Nom et Prénom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Âge</label>
+                            <select id="age" name="age">
+                                <option value="">Choisir</option>
+                                <option value="moins-15">Moins de 15 ans</option>
+                                <option value="15-18">15-18 ans</option>
+                                <option value="18-25">18-25 ans</option>
+                                <option value="25-35">25-35 ans</option>
+                                <option value="plus-35">Plus de 35 ans</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sport">Sport pratiqué</label>
+                            <select id="sport" name="sport">
+                                <option value="">Choisir</option>
+                                <option value="football">Football</option>
+                                <option value="tennis">Tennis</option>
+                                <option value="basketball">Basketball</option>
+                                <option value="handball">Handball</option>
+                                <option value="rugby">Rugby</option>
+                                <option value="athletisme">Athlétisme</option>
+                                <option value="natation">Natation</option>
+                                <option value="arts-martiaux">Arts martiaux</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="niveau">Niveau de pratique</label>
+                            <select id="niveau" name="niveau">
+                                <option value="">Choisir</option>
+                                <option value="loisir">Loisir</option>
+                                <option value="competition">Compétition régionale</option>
+                                <option value="national">Niveau national</option>
+                                <option value="professionnel">Professionnel</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="besoin">Type d'accompagnement souhaité</label>
+                            <select id="besoin" name="besoin">
+                                <option value="">Choisir</option>
+                                <option value="bilan-yesi">Bilan Y.E.S.I CONCEPT (30€)</option>
+                                <option value="fixation-objectifs">Fixations d'objectifs (30€)</option>
+                                <option value="ressenti">Ressenti instantané (30€)</option>
+                                <option value="fiche-7j">Fiche bloc 7 jours (80€)</option>
+                                <option value="accompagnement-bloc7">Accompagnement personnalisé Bloc 7 (120€)</option>
+                                <option value="accompagnement-mensuel">Accompagnement mensuel (300€)</option>
+                                <option value="pack-equipe">Pack Équipe - Bilan rentrée (15€/joueur)</option>
+                                <option value="bilan-mi-saison">Bilan mi-saison équipe (20€/joueur)</option>
+                                <option value="information">Demande d'information générale</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="effectifGroup" style="display: none;">
+                            <label for="effectif">Nombre de joueurs concernés</label>
+                            <select id="effectif" name="effectif">
+                                <option value="">Choisir</option>
+                                <option value="15-18">15-18 joueurs</option>
+                                <option value="moins-15">Moins de 15 joueurs</option>
+                                <option value="plus-18">Plus de 18 joueurs</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Décrivez votre situation, vos objectifs ou vos questions..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rappel">Préférence de contact</label>
+                            <select id="rappel" name="rappel">
+                                <option value="email">Par email</option>
+                                <option value="telephone">Rappel téléphonique</option>
+                                <option value="whatsapp">WhatsApp</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="cta-btn" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-paper-plane"></i> Envoyer la demande
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info fade-in">
+                    <h3>Nous contacter</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email</strong><br>
+                            yesiconcept.rdv@gmail.com
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <strong>Téléphone</strong><br>
+                            Disponible après prise de contact
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong>Disponibilités</strong><br>
+                            Lundi à Vendredi : 9h-19h<br>
+                            Samedi : 9h-13h
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <strong>Prise de rendez-vous</strong><br>
+                            Contactez-nous par email pour<br>
+                            planifier votre accompagnement
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Y.E.S.I CONCEPT</h3>
+                    <p>La méthode de préparation mentale qui révèle le potentiel des sportifs de tous niveaux.</p>
+                    <p style="margin-top: 20px;">
+                        <strong>Mr Din</strong><br>
+                        Préparateur mental diplômé<br>
+                        Concepteur de la méthode Y.E.S.I
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Prestations</h3>
+                    <p><a href="#services">Bilan Y.E.S.I (30€)</a></p>
+                    <p><a href="#services">Accompagnement mensuel (300€)</a></p>
+                    <p><a href="#services">Pack Équipe (15€/joueur)</a></p>
+                    <p><a href="#contact">Nous contacter</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Méthode Y.E.S.I</h3>
+                    <p><a href="#methode">Yes Attitude</a></p>
+                    <p><a href="#methode">Estime de Soi</a></p>
+                    <p><a href="#methode">Smart Goals</a></p>
+                    <p><a href="#methode">Investissement Personnel</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>
+                        <i class="fas fa-envelope"></i> 
+                        yesiconcept.rdv@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-clock"></i> 
+                        Lun-Ven: 9h-19h, Sam: 9h-13h
+                    </p>
+                    <p>
+                        <strong>Consultation initiale</strong><br>
+                        Premier échange pour comprendre<br>
+                        vos besoins et objectifs
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Y.E.S.I CONCEPT - Préparation Mentale Sportive. Tous droits réservés.</p>
+                <p style="margin-top: 10px; font-size: 0.9em;">
+                    Méthode déposée par Mr Din - Préparateur mental diplômé
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const progressFill = document.getElementById('progressFill');
+            
+            // Navbar transparency
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            // Progress bar
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressFill.style.width = scrollPercent + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form handling with dynamic fields
+        document.getElementById('besoin').addEventListener('change', function() {
+            const effectifGroup = document.getElementById('effectifGroup');
+            const value = this.value;
+            
+            // Show effectif field for team services only
+            if (value === 'pack-equipe' || value === 'bilan-mi-saison') {
+                effectifGroup.style.display = 'block';
+            } else {
+                effectifGroup.style.display = 'none';
+            }
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create email body
+            const emailBody = `
+Nouvelle demande de contact Y.E.S.I CONCEPT
+
+Informations personnelles:
+- Nom: ${data.nom}
+- Email: ${data.email}
+- Téléphone: ${data.telephone || 'Non renseigné'}
+- Âge: ${data.age || 'Non renseigné'}
+
+Informations sportives:
+- Sport: ${data.sport || 'Non renseigné'}
+- Niveau: ${data.niveau || 'Non renseigné'}
+
+Demande:
+- Type d'accompagnement: ${data.besoin || 'Non renseigné'}
+- Préférence de contact: ${data.rappel}
+
+Message:
+${data.message || 'Aucun message spécifique'}
+
+---
+Envoyé depuis le site Y.E.S.I CONCEPT
+            `.trim();
+
+            // Create mailto link
+            const subject = encodeURIComponent('Demande de contact Y.E.S.I CONCEPT - ' + data.nom);
+            const body = encodeURIComponent(emailBody);
+            const mailtoLink = `mailto:yesiconcept.rdv@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Demande envoyée !';
+            button.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '';
+                this.reset();
+            }, 3000);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            if (navMenu.style.display === 'flex') {
+                navMenu.style.position = 'absolute';
+                navMenu.style.top = '100%';
+                navMenu.style.left = '0';
+                navMenu.style.right = '0';
+                navMenu.style.background = 'white';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.padding = '20px';
+                navMenu.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Dynamic stats animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = stat.textContent;
+                const isPercentage = target.includes('%');
+                const targetNumber = parseInt(target.replace(/\D/g, ''));
+                let current = 0;
+                const increment = targetNumber / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        current = targetNumber;
+                        clearInterval(timer);
+                    }
+                    
+                    if (isPercentage) {
+                        stat.textContent = Math.floor(current) + '%';
+                    } else if (target.includes('+')) {
+                        stat.textContent = Math.floor(current) + '+';
+                    } else {
+                        stat.textContent = Math.floor(current) + (target.includes('mois') ? ' mois' : '');
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger stats animation when hero section is visible
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateStats, 1000);
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        heroObserver.observe(document.querySelector('.hero'));
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Easter egg - Konami code for special message
+        let konamiCode = [];
+        const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konami.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.join('') === konami.join('')) {
+                alert('🎯 Félicitations ! Vous avez découvert le secret Y.E.S.I ! Contactez-nous avec le code "KONAMI" pour une surprise...');
+                konamiCode = [];
+            }
+        });
+
+        // Performance optimization - Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
