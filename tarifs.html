@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarifs - Y.E.S.I CONCEPT | Accompagnement Performance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2942 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #3b9fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #ffffff;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            text-align: center;
+            margin: 50px 0 40px;
+            color: #3b9fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, rgba(59, 159, 255, 0.1), rgba(59, 159, 255, 0.05));
+            border: 2px solid rgba(59, 159, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b9fff, #1e78d4);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b9fff;
+            box-shadow: 0 20px 40px rgba(59, 159, 255, 0.2);
+        }
+
+        .service-name {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #3b9fff;
+            font-weight: 600;
+        }
+
+        .service-description {
+            font-size: 0.95em;
+            color: #b8d4f1;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .price-unit {
+            font-size: 0.4em;
+            color: #b8d4f1;
+            font-weight: normal;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #e0e9f5;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b9fff;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #3b9fff, #1e78d4);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(59, 159, 255, 0.4);
+        }
+
+        .group-pricing {
+            background: linear-gradient(145deg, rgba(59, 159, 255, 0.15), rgba(59, 159, 255, 0.08));
+            border: 2px solid rgba(59, 159, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .highlight .service-name {
+            color: #ffd700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(59, 159, 255, 0.3);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .footer-contact a {
+            color: #3b9fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Y.E.S.I CONCEPT</h1>
+                <p class="subtitle">ACCOMPAGNEMENT PERFORMANCE</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:yesiconcept.rdv@gmail.com" style="color: #3b9fff; text-decoration: none;">yesiconcept.rdv@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>07 63 58 77 83 (WhatsApp uniquement 10h-12h / 14h-18h)</span>
+                </div>
+                <div class="contact-item">
+                    <span>👻</span>
+                    <span>Snap: strano.d</span>
+                </div>
+            </div>
+        </header>
+
+        <h2 class="section-title">Accompagnement Individuel</h2>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="service-name">Bilan Y.E.S.I</div>
+                <div class="service-description">
+                    Évaluation complète de votre profil mental et identification des axes de progression
+                </div>
+                <div class="price">60€</div>
+                <ul class="features">
+                    <li>Analyse des 4 piliers Y.E.S.I</li>
+                    <li>Rapport détaillé personnalisé</li>
+                    <li>Plan d'action sur-mesure</li>
+                    <li>Durée : 60-90 minutes</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Bilan Y.E.S.I" class="cta-button">Réserver</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="service-name">Ressenti Instantané</div>
+                <div class="service-description">
+                    Intervention ciblée pour gérer une situation immédiate ou un blocage spécifique
+                </div>
+                <div class="price">50€</div>
+                <ul class="features">
+                    <li>Session ponctuelle ciblée</li>
+                    <li>Outils immédiats applicables</li>
+                    <li>Gestion d'urgence mentale</li>
+                    <li>Durée : 30-45 minutes</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Ressenti Instantané" class="cta-button">Réserver</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="service-name">Fixation d'Objectifs</div>
+                <div class="service-description">
+                    Définir et structurer vos objectifs sportifs avec une méthodologie éprouvée
+                </div>
+                <div class="price">50€</div>
+                <ul class="features">
+                    <li>Méthode SMART Goals</li>
+                    <li>Planification personnalisée</li>
+                    <li>Feuille de route détaillée</li>
+                    <li>Durée : 45-60 minutes</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Fixation d'Objectifs" class="cta-button">Réserver</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="service-name">Fiche BLOC 7</div>
+                <div class="service-description">
+                    Programme complet d'estime de soi sur 7 jours pour défenseurs (documents + support)
+                </div>
+                <div class="price">80€</div>
+                <ul class="features">
+                    <li>7 fiches d'exercices quotidiens</li>
+                    <li>Protocoles D.I.P.S & S.O.T.A</li>
+                    <li>Suivi autonome structuré</li>
+                    <li>Support inclus</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Fiche BLOC 7" class="cta-button">Réserver</a>
+            </div>
+
+            <div class="pricing-card highlight">
+                <div class="service-name">Accompagnement BLOC 7</div>
+                <div class="service-description">
+                    Programme estime de soi sur 7 jours avec suivi personnalisé quotidien
+                </div>
+                <div class="price">150€</div>
+                <ul class="features">
+                    <li>7 séances individuelles guidées</li>
+                    <li>Suivi quotidien personnalisé</li>
+                    <li>Ajustements en temps réel</li>
+                    <li>Bilan de progression final</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Accompagnement BLOC 7" class="cta-button">Réserver</a>
+            </div>
+
+            <div class="pricing-card highlight">
+                <div class="service-name">Accompagnement Mensuel</div>
+                <div class="service-description">
+                    Suivi complet sur 4 semaines pour une transformation mentale durable
+                </div>
+                <div class="price">350€</div>
+                <ul class="features">
+                    <li>4 séances hebdomadaires (1h)</li>
+                    <li>Disponibilité WhatsApp illimitée</li>
+                    <li>Outils et protocoles personnalisés</li>
+                    <li>Bilan mensuel détaillé</li>
+                </ul>
+                <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Accompagnement Mensuel" class="cta-button">Réserver</a>
+            </div>
+        </div>
+
+        <div class="group-pricing">
+            <h2 class="section-title" style="margin-top: 0;">Accompagnement Collectif</h2>
+            <div class="service-name" style="font-size: 1.8em; margin-bottom: 20px;">Bilan de Groupe</div>
+            <div class="price">50€ <span class="price-unit">/ joueur</span></div>
+            <div class="service-description" style="max-width: 600px; margin: 20px auto; font-size: 1.1em;">
+                Intervention collective pour évaluer et optimiser la cohésion et le mental d'équipe
+            </div>
+            <ul class="features" style="max-width: 500px; margin: 30px auto; text-align: left;">
+                <li>Évaluation collective du groupe</li>
+                <li>Analyse de la dynamique d'équipe</li>
+                <li>Protocoles de cohésion</li>
+                <li>Rapport pour le staff technique</li>
+                <li>Tarif dégressif selon effectif</li>
+            </ul>
+            <a href="mailto:yesiconcept.rdv@gmail.com?subject=Demande Bilan de Groupe" class="cta-button" style="font-size: 1.1em; padding: 15px 40px;">Demander un devis</a>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">
+                <strong>Prêt à transformer votre mental ?</strong>
+            </p>
+            <p style="color: #b8d4f1; margin-bottom: 20px;">
+                Contactez-moi pour réserver votre accompagnement ou pour toute question
+            </p>
+            <div class="footer-contact">
+                <a href="mailto:yesiconcept.rdv@gmail.com">📧 yesiconcept.rdv@gmail.com</a>
+                <span style="color: #b8d4f1;">|</span>
+                <span>📱 07 63 58 77 83 (WhatsApp 10h-12h / 14h-18h)</span>
+                <span style="color: #b8d4f1;">|</span>
+                <span>👻 Snap: strano.d</span>
+            </div>
+            <p style="margin-top: 30px; color: #b8d4f1; font-size: 0.9em;">
+                © 2025 Y.E.S.I CONCEPT - Tous droits réservés
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
