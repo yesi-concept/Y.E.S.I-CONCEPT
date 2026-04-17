@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Y.E.S.I — Suivi Joueur</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:#111;font-family:'Nunito',sans-serif;color:#f0f0f0;padding-bottom:60px;}
+.hdr{background:#f5c842;padding:16px;text-align:center;position:sticky;top:0;z-index:99;}
+.hdr h1{font-family:'Bebas Neue',cursive;font-size:1.8rem;color:#111;letter-spacing:4px;}
+.hdr p{font-size:.65rem;font-weight:800;color:#5a4200;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.pband{display:flex;gap:8px;padding:10px 14px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+.pband input,.pband select{background:#222;border:1.5px solid #333;border-radius:10px;padding:8px 12px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;outline:none;}
+.pband input{flex:1;}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:12px 14px;font-family:'Bebas Neue',cursive;font-size:.95rem;letter-spacing:1.5px;color:#555;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+.tab.on{color:#f5c842;border-bottom-color:#f5c842;}
+.mod{display:none;padding:12px;flex-direction:column;gap:10px;}
+.mod.on{display:flex;}
+.card{background:#1a1a1a;border:1.5px solid #2a2a2a;border-radius:14px;overflow:hidden;}
+.ch{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#222;border-bottom:1px solid #2a2a2a;}
+.ch .i{font-size:1.1rem;}
+.ch .t{font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:#f5c842;}
+.cb{padding:12px;display:flex;flex-direction:column;gap:9px;}
+.lbl{font-size:.62rem;font-weight:900;color:#555;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
+.fi input,.fi textarea,.fi select{width:100%;background:#222;border:1.5px solid #333;border-radius:10px;padding:10px 12px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;outline:none;}
+.fi textarea{min-height:65px;resize:none;}
+.fi select option{background:#222;}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.slr{display:flex;align-items:center;gap:10px;}
+.slr input[type=range]{flex:1;accent-color:#f5c842;}
+.slv{font-family:'Bebas Neue',cursive;font-size:1.3rem;color:#f5c842;min-width:26px;text-align:center;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.chip{border:2px solid #333;border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;background:#222;}
+.chip .ce{font-size:1.25rem;display:block;}
+.chip .cl{font-size:.62rem;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;display:block;line-height:1.2;}
+.chip.on{border-color:#f5c842;background:rgba(245,200,66,.08);}
+.chip.on .cl{color:#f5c842;}
+.chip.on-r{border-color:#c0392b;background:rgba(192,57,43,.1);}
+.chip.on-r .cl{color:#c0392b;}
+.chip.on-b{border-color:#1a6fd4;background:rgba(26,111,212,.1);}
+.chip.on-b .cl{color:#5ab4ff;}
+.obj{background:#222;border:1.5px solid #333;border-radius:12px;padding:10px;margin-bottom:7px;}
+.obj-n{font-family:'Bebas Neue',cursive;font-size:.85rem;color:#f5c842;letter-spacing:1px;margin-bottom:6px;}
+.obj-r{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center;}
+.oi{background:#111;border:1.5px solid #333;border-radius:8px;padding:8px 10px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;outline:none;width:100%;}
+.os{background:#111;border:1.5px solid #333;border-radius:8px;padding:8px;color:#f0f0f0;font-family:'Bebas Neue',cursive;font-size:.9rem;min-width:65px;outline:none;}
+.sav{background:#f5c842;color:#111;border:none;border-radius:14px;padding:14px;font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;width:100%;cursor:pointer;}
+.sav.ok{background:#1a2e1a;color:#27ae60;border:2px solid #27ae60;}
+.sep{height:1px;background:#2a2a2a;margin:8px 0;}
+.slbl{font-size:.65rem;font-weight:900;color:#7a6421;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.hi{background:#222;border:1.5px solid #2a2a2a;border-radius:12px;padding:10px 12px;margin-bottom:7px;}
+.hid{font-family:'Bebas Neue',cursive;font-size:.9rem;color:#f5c842;letter-spacing:1px;}
+.hit{font-size:.7rem;color:#555;font-weight:700;margin-top:3px;line-height:1.5;}
+.empty{text-align:center;padding:24px;color:#444;font-size:.78rem;font-weight:700;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#27ae60;color:#fff;font-weight:900;font-size:.8rem;padding:10px 22px;border-radius:50px;transition:transform .3s;z-index:999;white-space:nowrap;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="hdr"><h1>SUIVI JOUEUR Y.E.S.I</h1><p>Entrainement · Match · Mental · Nutrition</p></div>
+<div class="pband">
+  <input type="text" id="nom" placeholder="Prenom Nom du joueur">
+  <select id="sport"><option value="">Sport</option><option>Football</option><option>Basketball</option><option>Tennis</option><option>Handball</option><option>Rugby</option><option>Athletisme</option><option>Natation</option><option>Arts martiaux</option><option>Autre</option></select>
+</div>
+<div class="tabs">
+  <div class="tab on" data-m="train">Entrainement</div>
+  <div class="tab" data-m="match">Match</div>
+  <div class="tab" data-m="mental">Mental</div>
+  <div class="tab" data-m="nutri">Nutrition</div>
+  <div class="tab" data-m="hist">Historique</div>
+</div>
+
+<div class="mod on" id="mod-train">
+  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">SESSION</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Date</label><input type="date" id="t-dt"></div>
+    <div class="r2">
+      <div class="fi"><label class="lbl">Type</label><select id="t-ty"><option value="">-</option><option>Technique</option><option>Tactique</option><option>Physique</option><option>Mixte</option><option>Recuperation</option></select></div>
+      <div class="fi"><label class="lbl">Duree</label><select id="t-du"><option value="">-</option><option>30 min</option><option>45 min</option><option>1h</option><option>1h30</option><option>2h+</option></select></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="i">🎯</span><span class="t">OBJECTIFS</span></div><div class="cb" id="t-ob"></div></div>
+  <div class="card"><div class="ch"><span class="i">💡</span><span class="t">Q.F.A.C</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Attitude</label><select id="t-at"><option value="">-</option><option>Tres investie</option><option>Investie</option><option>Neutre</option><option>Peu investie</option><option>Desengagee</option></select></div>
+    <div class="fi"><label class="lbl">Comportement</label><select id="t-co"><option value="">-</option><option>Exemplaire</option><option>Bon</option><option>Neutre</option><option>Tensions</option><option>Negatif</option></select></div>
+    <div class="fi"><label class="lbl">Concentration (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="t-cn"><span class="slv" id="t-cn-v">5</span></div></div>
+    <div class="fi"><label class="lbl">Intensite physique (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="t-in"><span class="slv" id="t-in-v">5</span></div></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">NOTES</span></div><div class="cb"><div class="fi"><textarea id="t-no" placeholder="Observations, ressentis..."></textarea></div></div></div>
+  <button class="sav" id="t-sv">💾 VALIDER LA SESSION</button>
+</div>
+
+<div class="mod" id="mod-match">
+  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">MATCH</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Date</label><input type="date" id="m-dt"></div>
+    <div class="r2">
+      <div class="fi"><label class="lbl">Adversaire</label><input type="text" id="m-ad" placeholder="Equipe adverse"></div>
+      <div class="fi"><label class="lbl">Score</label><input type="text" id="m-sc" placeholder="2 - 1"></div>
+    </div>
+    <div class="r2">
+      <div class="fi"><label class="lbl">Resultat</label><select id="m-re"><option value="">-</option><option>Victoire</option><option>Nul</option><option>Defaite</option></select></div>
+      <div class="fi"><label class="lbl">Temps de jeu</label><select id="m-tp"><option value="">-</option><option>Titulaire complet</option><option>Titulaire partiel</option><option>Remplacant</option><option>Non utilise</option></select></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="i">🎯</span><span class="t">OBJECTIFS DU MATCH</span></div><div class="cb" id="m-ob"></div></div>
+  <div class="card"><div class="ch"><span class="i">💡</span><span class="t">Q.F.A.C PERFORMANCE</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Attitude</label><select id="m-at"><option value="">-</option><option>Exemplaire sous pression</option><option>Bonne attitude</option><option>Neutre</option><option>Perdu mentalement</option><option>Attitude negative</option></select></div>
+    <div class="fi"><label class="lbl">Comportement collectif</label><select id="m-co"><option value="">-</option><option>Leader positif</option><option>Bon coequipier</option><option>Neutre</option><option>Individualismes</option><option>Conflits</option></select></div>
+    <div class="fi"><label class="lbl">Performance globale (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="m-pf"><span class="slv" id="m-pf-v">5</span></div></div>
+    <div class="fi"><label class="lbl">Gestion du stress (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="m-st"><span class="slv" id="m-st-v">5</span></div></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">ANALYSE POST-MATCH</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Points forts</label><textarea id="m-fo" placeholder="Ce que tu as bien reussi..."></textarea></div>
+    <div class="fi"><label class="lbl">Points a ameliorer</label><textarea id="m-ax" placeholder="Ce sur quoi progresser..."></textarea></div>
+  </div></div>
+  <button class="sav" id="m-sv">💾 VALIDER LE MATCH</button>
+</div>
+
+<div class="mod" id="mod-mental">
+  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">SESSION MENTALE</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Date</label><input type="date" id="me-dt"></div>
+    <div class="fi"><label class="lbl">Etat mental du jour (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="me-et"><span class="slv" id="me-et-v">5</span></div></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="i">🧠</span><span class="t">EXERCICES REALISES</span></div><div class="cb"><div class="g2" id="me-ex"></div></div></div>
+  <div class="card"><div class="ch"><span class="i">⚠️</span><span class="t">AXE Y.E.S.I TRAVAILLE</span></div><div class="cb"><div class="g2" id="me-ax"></div></div></div>
+  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">RESSENTI</span></div><div class="cb"><div class="fi"><textarea id="me-re" placeholder="Tes ressentis, ce que tu as appris..."></textarea></div></div></div>
+  <button class="sav" id="me-sv">💾 VALIDER LA SESSION</button>
+</div>
+
+<div class="mod" id="mod-nutri">
+  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">JOURNEE</span></div><div class="cb"><div class="fi"><label class="lbl">Date</label><input type="date" id="n-dt"></div></div></div>
+  <div class="card"><div class="ch"><span class="i">🍽️</span><span class="t">3 REPAS DU JOUR</span></div><div class="cb" id="n-rp"></div></div>
+  <div class="card"><div class="ch"><span class="i">💧</span><span class="t">EAU DU JOUR</span></div><div class="cb"><div class="g4" id="n-ea"></div></div></div>
+  <div class="card"><div class="ch"><span class="i">📊</span><span class="t">QUALITE GLOBALE</span></div><div class="cb">
+    <div class="fi"><label class="lbl">Note nutrition (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="n-sc"><span class="slv" id="n-sc-v">5</span></div></div>
+    <div class="fi"><textarea id="n-no" placeholder="Ecarts, contexte, ressenti energetique..."></textarea></div>
+  </div></div>
+  <button class="sav" id="n-sv">💾 VALIDER LA JOURNEE</button>
+</div>
+
+<div class="mod" id="mod-hist">
+  <div class="card"><div class="ch"><span class="i">📊</span><span class="t">HISTORIQUE</span></div><div class="cb" id="hist-l"></div></div>
+</div>
+
+<div class="toast" id="tst"></div>
+
+<script>
+var NOM='', SPORT='', SESS=[], EAU_ST=null, REP={r1:null,r2:null,r3:null}, EXO_ST={}, AXE_ST='';
+var SK='yesi_v3';
+
+function load(){
+  try{
+    var r=localStorage.getItem(SK);
+    if(!r) return;
+    var d=JSON.parse(r);
+    if(!d||typeof d!='object') return;
+    NOM  = typeof d.nom=='string'   ? d.nom   : '';
+    SPORT= typeof d.sport=='string' ? d.sport : '';
+    SESS = Array.isArray(d.sess)    ? d.sess  : [];
+  }catch(e){ NOM=''; SPORT=''; SESS=[]; }
+}
+
+function save(){
+  try{ localStorage.setItem(SK,JSON.stringify({nom:NOM,sport:SPORT,sess:SESS})); }catch(e){}
+}
+
+function pad(n){return n<10?'0'+n:''+n;}
+function today(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmt(s){if(!s)return '-';var p=s.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
+function g(id){return document.getElementById(id);}
+function v(id){var e=g(id);return e?e.value:'';}
+
+function toast(msg){
+  var t=g('tst'); t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+function sl(id,vid){ var e=g(id),vv=g(vid); if(e&&vv) e.oninput=function(){vv.textContent=this.value;}; }
+
+function mkObjs(cid,pfx){
+  var c=g(cid); if(!c) return; c.innerHTML='';
+  for(var i=1;i<=3;i++){
+    var d=document.createElement('div'); d.className='obj';
+    var op='<option value="">-</option>';
+    for(var j=1;j<=10;j++) op+='<option>'+j+'/10</option>';
+    d.innerHTML='<div class="obj-n">OBJECTIF '+i+'</div><div class="obj-r"><input type="text" class="oi" id="'+pfx+'o'+i+'" placeholder="Decris ton objectif..."><select class="os" id="'+pfx+'os'+i+'">'+op+'</select></div>';
+    c.appendChild(d);
+  }
+}
+
+var EX=[{v:'conc',e:'🃏',l:'Table Shuffle'},{v:'rout',e:'⚡',l:'Routine pre-match'},{v:'disc',e:'💬',l:'Discours interieur'},{v:'axe',e:'🔧',l:'Renforcement axe'},{v:'visu',e:'🎯',l:'Visualisation'},{v:'resp',e:'🫁',l:'Coherence cardiaque'}];
+var AX=[{v:'YES',l:'YES ATTITUDE'},{v:'ESTIME',l:'ESTIME DE SOI'},{v:'SMART',l:'SMART GOALS'},{v:'INVEST',l:'INVESTISSEMENT'}];
+var RO=[{v:'legumes',e:'🥦',l:'Legumes'},{v:'salade',e:'🥗',l:'Salade'},{v:'feculent',e:'🍚',l:'Feculent'},{v:'frit',e:'🍟',l:'Frit'},{v:'proteine',e:'🍗',l:'Proteines'},{v:'autre',e:'🍽️',l:'Autre'}];
+var SL=[{k:'r1',l:'Matin/Midi'},{k:'r2',l:'Dejeuner'},{k:'r3',l:'Diner'}];
+var EA=[{v:'m1',e:'💧',l:'<1L'},{v:'1l',e:'💧💧',l:'1L'},{v:'v5',e:'💧💧💧',l:'1.5L'},{v:'p5',e:'🌊',l:'>1.5L'}];
+
+function mkChips(cid,items,isAxe){
+  var c=g(cid); if(!c) return; c.innerHTML='';
+  items.forEach(function(it){
+    var d=document.createElement('div'); d.className='chip';
+    d.innerHTML='<span class="ce">'+(it.e||'🔹')+'</span><span class="cl">'+it.l+'</span>';
+    d.onclick=function(){
+      if(isAxe){
+        AXE_ST=(AXE_ST===it.v)?'':it.v;
+        c.querySelectorAll('.chip').forEach(function(b){b.classList.remove('on-r');});
+        if(AXE_ST===it.v) d.classList.add('on-r');
+      } else {
+        EXO_ST[it.v]=!EXO_ST[it.v];
+        d.classList.toggle('on',!!EXO_ST[it.v]);
+      }
+    };
+    c.appendChild(d);
+  });
+}
+
+function mkNutri(){
+  var c=g('n-rp'); if(!c) return; c.innerHTML='';
+  SL.forEach(function(sl,si){
+    if(si>0){var s=document.createElement('div');s.className='sep';c.appendChild(s);}
+    var lb=document.createElement('div');lb.className='slbl';lb.textContent=sl.l;c.appendChild(lb);
+    var gr=document.createElement('div');gr.className='g2';
+    RO.forEach(function(r){
+      var b=document.createElement('div');b.className='chip';
+      b.innerHTML='<span class="ce">'+r.e+'</span><span class="cl">'+r.l+'</span>';
+      b.onclick=function(){
+        REP[sl.k]=(REP[sl.k]===r.v)?null:r.v;
+        gr.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+        if(REP[sl.k]) b.classList.add('on');
+      };
+      gr.appendChild(b);
+    });
+    c.appendChild(gr);
+  });
+}
+
+function mkEau(){
+  var c=g('n-ea'); if(!c) return; c.innerHTML='';
+  EA.forEach(function(e){
+    var b=document.createElement('div');b.className='chip';
+    b.innerHTML='<span class="ce">'+e.e+'</span><span class="cl">'+e.l+'</span>';
+    b.onclick=function(){
+      EAU_ST=(EAU_ST===e.v)?null:e.v;
+      c.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on-b');});
+      if(EAU_ST) b.classList.add('on-b');
+    };
+    c.appendChild(b);
+  });
+}
+
+function mkSav(id,type,lbl){
+  var b=g(id); if(!b) return;
+  b.onclick=function(){
+    var s={type:type,ts:Date.now(),date:v(type[0]+'-dt')||today()};
+    if(type==='train'){s.ty=v('t-ty');s.du=v('t-du');s.o1=v('t-o1');s.o1s=v('t-os1');s.o2=v('t-o2');s.o2s=v('t-os2');s.o3=v('t-o3');s.o3s=v('t-os3');s.at=v('t-at');s.co=v('t-co');s.cn=v('t-cn');s.ins=v('t-in');s.no=v('t-no');}
+    else if(type==='match'){s.ad=v('m-ad');s.sc=v('m-sc');s.re=v('m-re');s.tp=v('m-tp');s.o1=v('m-o1');s.o1s=v('m-os1');s.o2=v('m-o2');s.o2s=v('m-os2');s.o3=v('m-o3');s.o3s=v('m-os3');s.at=v('m-at');s.co=v('m-co');s.pf=v('m-pf');s.st=v('m-st');s.fo=v('m-fo');s.ax=v('m-ax');}
+    else if(type==='mental'){s.et=v('me-et');s.ex=Object.keys(EXO_ST).filter(function(k){return EXO_ST[k];});s.ax=AXE_ST;s.re=v('me-re');}
+    else if(type==='nutri'){s.r1=REP.r1;s.r2=REP.r2;s.r3=REP.r3;s.ea=EAU_ST;s.sc=v('n-sc');s.no=v('n-no');}
+    SESS.push(s); save();
+    b.textContent='VALIDE !'; b.classList.add('ok');
+    setTimeout(function(){b.textContent=lbl;b.classList.remove('ok');},2000);
+    toast('Session du '+fmt(s.date)+' sauvegardee !');
+  };
+}
+
+function renderHist(){
+  var c=g('hist-l'); if(!c) return;
+  if(!SESS.length){c.innerHTML='<div class="empty">Aucune session enregistree.<br>Remplis tes modules !</div>';return;}
+  c.innerHTML='';
+  var TL={train:'Entrainement',match:'Match',mental:'Mental',nutri:'Nutrition'};
+  SESS.slice().sort(function(a,b){return b.ts-a.ts;}).forEach(function(s){
+    var d=document.createElement('div');d.className='hi';
+    var dt='';
+    if(s.type==='train') dt=(s.ty||'-')+' · '+(s.du||'-')+' · Conc: '+(s.cn||'-')+'/10';
+    else if(s.type==='match') dt='Vs '+(s.ad||'-')+' · '+(s.sc||'-')+' · '+(s.re||'-')+' · Perf: '+(s.pf||'-')+'/10';
+    else if(s.type==='mental') dt='Etat: '+(s.et||'-')+'/10'+(s.ax?' · Axe: '+s.ax:'')+(s.ex&&s.ex.length?' · '+s.ex.length+' ex.':'');
+    else if(s.type==='nutri') dt='Note: '+(s.sc||'-')+'/10 · Eau: '+(s.ea||'-');
+    d.innerHTML='<div class="hid">'+(TL[s.type]||s.type)+' · '+fmt(s.date)+'</div><div class="hit">'+dt+'</div>';
+    c.appendChild(d);
+  });
+}
+
+// TABS
+document.querySelectorAll('.tab').forEach(function(t){
+  t.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.mod').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+    var m=g('mod-'+t.getAttribute('data-m'));
+    if(m) m.classList.add('on');
+    if(t.getAttribute('data-m')==='hist') renderHist();
+  };
+});
+
+// BOOT
+load();
+g('nom').value=NOM;
+g('sport').value=SPORT;
+g('nom').oninput=function(){NOM=this.value;save();};
+g('sport').onchange=function(){SPORT=this.value;save();};
+
+var td=today();
+['t-dt','m-dt','me-dt','n-dt'].forEach(function(id){var e=g(id);if(e)e.value=td;});
+
+mkObjs('t-ob','t-');mkObjs('m-ob','m-');
+mkChips('me-ex',EX,false);mkChips('me-ax',AX,true);
+mkNutri();mkEau();
+sl('t-cn','t-cn-v');sl('t-in','t-in-v');sl('m-pf','m-pf-v');sl('m-st','m-st-v');sl('me-et','me-et-v');sl('n-sc','n-sc-v');
+mkSav('t-sv','train','💾 VALIDER LA SESSION');
+mkSav('m-sv','match','💾 VALIDER LE MATCH');
+mkSav('me-sv','mental','💾 VALIDER LA SESSION');
+mkSav('n-sv','nutri','💾 VALIDER LA JOURNEE');
+</script>
+</body>
+</html>
